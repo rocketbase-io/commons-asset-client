@@ -9,12 +9,12 @@ import { spawn } from "child_process";
 import { keys, mapValues, upperFirst, camelCase, template } from "lodash";
 import pkg from "./package.json";
 
-const { main, dependencies, module, unpkg, browser } = pkg;
+const { main, peerDependencies, module, unpkg, browser } = pkg;
 const formatModule = (name) => upperFirst(camelCase(name.indexOf("@") !== -1 ? name.split("/")[1] : name));
 const yearRange = (date) => (new Date().getFullYear() === +date ? date : `${date} - ${new Date().getFullYear()}`);
 const year = yearRange(pkg.since || new Date().getFullYear());
-const external = keys(dependencies || {});
-const globals = mapValues(dependencies || {}, (value, key) => formatModule(key));
+const external = keys(peerDependencies || {});
+const globals = mapValues(peerDependencies || {}, (value, key) => formatModule(key));
 const name = formatModule(pkg.name);
 /* eslint-disable */
 const banner = template(`
