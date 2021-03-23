@@ -6,7 +6,6 @@
   "main": "dist/main.cjs.js",
   "module": "dist/main.esm.js",
   "unpkg": "dist/main.umd.js",
-  "browser": "dist/main.iife.js",
   "types": "dist/main.esm.d.ts",
   "scripts": {
     "build": "rollup -c rollup.config.js",

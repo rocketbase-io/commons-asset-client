@@ -9,7 +9,7 @@ import { spawn } from "child_process";
 import { keys, mapValues, upperFirst, camelCase, template } from "lodash";
 import pkg from "./package.json";
 
-const { main, peerDependencies, module, unpkg, browser } = pkg;
+const { main, peerDependencies, module, unpkg } = pkg;
 const formatModule = (name) => upperFirst(camelCase(name.indexOf("@") !== -1 ? name.split("/")[1] : name));
 const yearRange = (date) => (new Date().getFullYear() === +date ? date : `${date} - ${new Date().getFullYear()}`);
 const year = yearRange(pkg.since || new Date().getFullYear());
@@ -34,7 +34,6 @@ const outputs = [
   { format: "cjs", file: main },
   !live && { format: "umd", file: unpkg },
   !live && { format: "esm", file: module },
-  !live && { format: "iife", file: browser },
 ].filter((it) => it);
 
 export default {
