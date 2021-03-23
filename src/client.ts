@@ -47,7 +47,7 @@ export function createAssetClient(client: AxiosInstance = axios.create({ baseURL
   async function upload(file: unknown, options?: AssetUploadOptions): Promise<AssetRead> {
     const { keyValue, ...params } = options ?? {};
     const kv = formatKeyValue(keyValue);
-    return (await client.post("/", { file }, { params: { ...kv, ...params } })).data;
+    return (await client.post("/", file, { params: { ...kv, ...params } })).data;
   }
 
   async function update(id: string, options?: AssetUpdateOptions): Promise<AssetRead> {
