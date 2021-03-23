@@ -28,7 +28,7 @@ export function createAssetClient(client: AxiosInstance = axios.create({ baseURL
 
   async function download<T>(id: string, options?: AssetDownloadOptions): Promise<T> {
     const { responseType = defaultResponseType, ...params } = options ?? {};
-    return (await axios.get(`/${id}/b`, { params, responseType })).data as T;
+    return (await client.get(`/${id}/b`, { params, responseType })).data as T;
   }
 
   async function copy(id: string): Promise<AssetRead> {
@@ -37,7 +37,7 @@ export function createAssetClient(client: AxiosInstance = axios.create({ baseURL
 
   async function preview<T>(id: string, size: PreviewSize, options?: AssetPreviewOptions): Promise<T> {
     const { responseType = defaultResponseType } = options ?? {};
-    return (await axios.get(`/${id}/${size}`, { responseType })).data;
+    return (await client.get(`/${id}/${size}`, { responseType })).data;
   }
 
   function formatKeyValue(kv: Record<string, string> = {}): Record<string, string> {
@@ -47,11 +47,11 @@ export function createAssetClient(client: AxiosInstance = axios.create({ baseURL
   async function upload(file: unknown, options?: AssetUploadOptions): Promise<AssetRead> {
     const { keyValue, ...params } = options ?? {};
     const kv = formatKeyValue(keyValue);
-    return (await axios.post("/", { file }, { params: { ...kv, ...params } })).data;
+    return (await client.post("/", { file }, { params: { ...kv, ...params } })).data;
   }
 
   async function update(id: string, options?: AssetUpdateOptions): Promise<AssetRead> {
-    return (await axios.put(`/${id}`, options)).data;
+    return (await client.put(`/${id}`, options)).data;
   }
 
   return { fetch, get, remove, download, copy, preview, upload, update };
