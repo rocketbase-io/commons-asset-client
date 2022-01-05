@@ -40,7 +40,7 @@
     "@typescript-eslint/eslint-plugin": "^5.9.0",
     "@typescript-eslint/parser": "^5.9.0",
     "@wessberg/rollup-plugin-ts": "^2.0.4",
-    "axios": ">=0.24",
+    "axios": ">=0.20",
     "dotenv-flow": "^3.2.0",
     "eslint": "^8.6.0",
     "eslint-config-prettier": "^8.3.0",
@@ -81,6 +81,6 @@
     "doc": "docs"
   },
   "peerDependencies": {
-    "axios": ">=0.24"
+    "axios": ">=0.20"
   }
 }
